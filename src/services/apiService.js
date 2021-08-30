@@ -10,7 +10,7 @@ export async function apiGetCandidates() {
   return allCandidates;
 }
 
-export async function apiGetElection() {
-  const allElections = await get('/election');
+export async function apiGetElection(id) {
+  const allElections = await get(`/election?cityId=${id}`);
   return allElections;
 }
