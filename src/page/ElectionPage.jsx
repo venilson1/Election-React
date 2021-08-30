@@ -15,13 +15,25 @@ export default function ElectionPage() {
     const { id, presence, votingPopulation, absence, name } = JSON.parse(obj)
 
     const response = await apiGetElection(id)
-    
+
     response.forEach(election => {
       election.candidate = allCandidates
         .filter(({ id }) => id === election.candidateId)
+        
       const percent = (election.votes * 100) / presence;
       election.percent = +percent.toFixed(2)
     })
+
+    const city = {
+      id,
+      city: name,
+      presence,
+      votingPopulation,
+      absence,
+      candidates: response
+    }
+
+    console.log(city);
   }
 
   return (
