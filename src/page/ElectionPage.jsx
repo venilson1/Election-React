@@ -13,7 +13,8 @@ export default function ElectionPage() {
 
   async function handleChange(obj) {
     const { id, presence, votingPopulation, absence, name } = JSON.parse(obj)
-    
+
+    const response = await apiGetElection(id)
   }
 
   return (
