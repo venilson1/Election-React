@@ -3,6 +3,7 @@ import Information from "./Information"
 export default function AllCandidates({
   candidates = []
 }) {
+  console.log(candidates);
   return (
     <div className="flex flex-wrap justify-center">
       {
@@ -12,6 +13,17 @@ export default function AllCandidates({
               <Information>{votingPopulation}</Information>
               <Information>{presence}</Information>
               <Information>{absence}</Information>
+
+              {/* <div key={id} className="">
+                <div style={{ backgroundColor: "#606368" }} className="m-4 p-4 rounded-lg shadow-md text-gray-100 font-medium w-96">
+                  <div className="flex flex-row">
+                  <div className="flex w-2/4 justify-center p-2">
+                    <img src={`img/${candidates}.png`} alt="" />
+                  </div>
+                  </div>
+                </div>
+              </div> */}
+
             </>
           )
         })

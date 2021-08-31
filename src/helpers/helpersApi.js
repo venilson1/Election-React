@@ -24,9 +24,11 @@ export default function helpersApi(
     })
 
     return obj.forEach(element => {
-      element.candidates = el
+      element.candidates = election
     })
   });
+
+  console.log(obj);
 
   return obj;
 }
