@@ -6,17 +6,23 @@ import { apiGetCandidates, apiGetCities, apiGetElection } from "../services/apiS
 import helpersApi from "../helpers/helpersApi";
 import AllCandidates from "../Components/AllCandidates";
 import Option from './../Components/Option';
+import Loading from './../Components/Loading';
 
 export default function ElectionPage() {
 
   const [election, setElections] = useState([]);
   const [allCities, setAllCities] = useState([]);
   const [allCandidates, setAllCandidates] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       const response = await apiGetElection()
       setElections(response)
+
+      setTimeout(() => {
+        setLoading(false);
+      }, 500)
     })()
   }, [])
 
@@ -34,20 +40,34 @@ export default function ElectionPage() {
     })()
   }, [])
 
- const obj = helpersApi(election, allCities, allCandidates)
+  const obj = helpersApi(election, allCities, allCandidates)
 
 
- async function handlerChangeCitySelected(id) {
-  const newResponse = await apiGetElection(id)
-  setElections(newResponse)
- }
+  async function handlerChangeCitySelected(id) {
+    const newResponse = await apiGetElection(id)
+    setElections(newResponse)
+  }
+
+  let mainJsx = (
+    <div className="flex justify-center items-center h-screen">
+      <Loading />
+    </div>
+  )
+
+  if (!loading) {
+    mainJsx = (
+      <>
+        <Option citiesChange={allCities} onSelectedChange={handlerChangeCitySelected} />
+        <AllCandidates candidates={obj} />
+      </>
+    )
+  }
 
   return (
     <div style={{ backgroundColor: "#202124" }}>
       <Header />
       <Main>
-        <Option citiesChange={allCities} onSelectedChange={handlerChangeCitySelected}/>
-        <AllCandidates candidates={obj}/>
+        {mainJsx}
       </Main>
     </div>
   );
