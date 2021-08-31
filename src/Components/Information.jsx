@@ -4,11 +4,11 @@ export default function Information({
   txtColor = ''
 }) {
   return (
-    <div  className="flex flex-wrap m-4 text-left justify-center">
-      <div className="bg-pink-200 rounded-lg shadow-md pl-8 p-4 w-64">
+    <>
+      <div className="bg-pink-200 rounded-lg shadow-md pl-8 p-4 w-64 m-4">
         <p className="text-lg">{label}</p>
         <p className={`font-semibold text-3xl ${txtColor}`}>{children.toLocaleString('PT')}</p>
       </div>
-    </div>
+    </>
   )
 }

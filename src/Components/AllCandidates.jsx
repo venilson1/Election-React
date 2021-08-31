@@ -4,22 +4,23 @@ import Information from "./Information"
 export default function AllCandidates({
   candidates = []
 }) {
-  console.log(candidates);
   return (
     <div className="flex flex-wrap justify-center">
       {
         candidates.map(({ absence, candidates, id, name, presence, votingPopulation }) => {
           return (
-            <>
-              <Information label="Total de Eleitores">{votingPopulation}</Information>
-              <Information label="Compareimento" txtColor="text-green-600">{presence}</Information>
-              <Information label="Abstenção" txtColor="text-red-600">{absence}</Information>
-
-              <div className="flex flex-row flex-wrap mt-16">
-                <Candidate  candidates={candidates}/>
+            <div key={id}>
+              <div className="flex flex-wrap m-4 text-left justify-center">
+                <Information label="Total de Eleitores">{votingPopulation}</Information>
+                <Information label="Compareimento" txtColor="text-green-600">{presence}</Information>
+                <Information label="Abstenção" txtColor="text-red-600">{absence}</Information>
               </div>
 
-            </>
+              <div className="flex flex-row flex-wrap mt-16">
+                <Candidate candidates={candidates} />
+              </div>
+
+            </div>
           )
         })
       }

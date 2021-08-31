@@ -27,8 +27,5 @@ export default function helpersApi(
       element.candidates = election
     })
   });
-
-  console.log(obj);
-
   return obj;
 }
