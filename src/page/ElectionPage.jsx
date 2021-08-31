@@ -4,11 +4,13 @@ import Header from "../Components/Header";
 import Main from './../Components/Main';
 import Option from "../Components/Option";
 import AllCandidates from './../Components/AllCandidates';
+import Candidates from "../Components/Candidates";
 export default function ElectionPage() {
 
   const [allCities, setAllCities] = useState([]);
   const [allCandidates, setAllCandidates] = useState([]);
   const [citySelected, setCitySelected] = useState([]);
+  const [allCanidateMode, setAllCanidateMode] = useState(true)
 
   useEffect(() => {
     (async () => {
@@ -40,16 +42,19 @@ export default function ElectionPage() {
       candidates: response
     }
     setCitySelected(city)
+    setAllCanidateMode(false)
   }
 
-  console.log(allCandidates);
+  console.log(citySelected);
 
   return (
     <div style={{ backgroundColor: "#202124" }}>
       <Header />
       <Main>
         <Option allCities={allCities} onSelectedChange={handlerChangeCity} />
-        <AllCandidates  allCandidates={allCandidates} />
+        {
+          allCanidateMode? <AllCandidates  allCandidates={allCandidates} /> : <Candidates/>
+        }
       </Main>
     </div>
   );
