@@ -49,7 +49,7 @@ export default function ElectionPage() {
       <Header />
       <Main>
         <Option allCities={allCities} onSelectedChange={handlerChangeCity} />
-        <AllCandidates></AllCandidates>
+        <AllCandidates  allCandidates={allCandidates} />
       </Main>
     </div>
   );
