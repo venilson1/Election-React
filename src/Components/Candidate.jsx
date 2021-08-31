@@ -4,7 +4,7 @@ export default function Candidate({
   const maxVotes = 
     candidates.map(({ votes }) => votes)
     .reduce((a, b) => Math.max(a, b));
-    
+
   return (
     <div>
       <div className="text-center my-10 ">
@@ -25,6 +25,7 @@ export default function Candidate({
                   <div className="flex flex-row p-4">
                     <div className="flex w-2/4 justify-center ">
                       <img src={`img/${username}.png`} alt={name} className={`rounded-full h-24 ${borderElected} border-4`} />
+                      <img src={`img/${name}.png`} alt={name} className={`rounded-full h-24 ${borderElected} border-4`} />
                     </div>
                     <div className="flex col-end-13 w-2/4 items-center justify-center p-2 flex-col">
                       <p className={`font-extrabold text-2xl ${textElected}`}>{percent} %</p>
