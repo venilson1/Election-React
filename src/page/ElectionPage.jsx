@@ -1,60 +1,53 @@
-import { useState, useEffect } from "react";
-import { apiGetCandidates, apiGetCities, apiGetElection } from "../services/apiService";
 import Header from "../Components/Header";
 import Main from './../Components/Main';
-import Option from "../Components/Option";
-import AllCandidates from './../Components/AllCandidates';
-import Candidates from "../Components/Candidates";
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { apiGetCandidates, apiGetCities, apiGetElection } from "../services/apiService";
+import helpersApi from "../helpers/helpersApi";
+import AllCandidates from "../Components/AllCandidates";
+import Option from './../Components/Option';
+
 export default function ElectionPage() {
 
+  const [election, setElections] = useState([]);
   const [allCities, setAllCities] = useState([]);
   const [allCandidates, setAllCandidates] = useState([]);
-  const [citySelected, setCitySelected] = useState([]);
-  const [allCanidateMode, setAllCanidateMode] = useState(true)
 
   useEffect(() => {
     (async () => {
-      setAllCities(await apiGetCities())
+      const response = await apiGetElection()
+      setElections(response)
     })()
   }, [])
 
-  useEffect(() => (async () => setAllCandidates(await apiGetCandidates()))(), [])
+  useEffect(() => {
+    (async () => {
+      const response = await apiGetCities()
+      setAllCities(response)
+    })()
+  }, [])
 
-  async function handlerChangeCity(obj) {
-    const { id, presence, votingPopulation, absence, name } = JSON.parse(obj)
+  useEffect(() => {
+    (async () => {
+      const response = await apiGetCandidates()
+      setAllCandidates(response)
+    })()
+  }, [])
 
-    const response = await apiGetElection(id)
+ const obj = helpersApi(election, allCities, allCandidates)
 
-    response.forEach(election => {
-      election.candidate = allCandidates
-        .filter(({ id }) => id === election.candidateId)
 
-      const percent = (election.votes * 100) / presence;
-      election.percent = +percent.toFixed(2)
-    })
-
-    const city = {
-      id,
-      city: name,
-      presence,
-      votingPopulation,
-      absence,
-      candidates: response
-    }
-    setCitySelected(city)
-    setAllCanidateMode(false)
-  }
-
-  console.log(citySelected);
+ async function handlerChangeCitySelected(id) {
+  const newResponse = await apiGetElection(id)
+  setElections(newResponse)
+ }
 
   return (
     <div style={{ backgroundColor: "#202124" }}>
       <Header />
       <Main>
-        <Option allCities={allCities} onSelectedChange={handlerChangeCity} />
-        {
-          allCanidateMode? <AllCandidates  allCandidates={allCandidates} /> : <Candidates/>
-        }
+        <Option citiesChange={allCities} onSelectedChange={handlerChangeCitySelected}/>
+        <AllCandidates candidates={obj}/>
       </Main>
     </div>
   );
