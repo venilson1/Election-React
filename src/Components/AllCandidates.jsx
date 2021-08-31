@@ -1,3 +1,5 @@
+import Information from "./Information"
+
 export default function AllCandidates({
   candidates = []
 }) {
@@ -6,34 +8,17 @@ export default function AllCandidates({
       {
         candidates.map(({ absence, candidates, id, name, presence, votingPopulation }) => {
           return (
-            <div key={id} className="flex flex-wrap flex-col space-y-6 m-8 text-left">
-              <div className="bg-pink-200 rounded-lg shadow-md pl-16 p-4 w-96">
-                <p className="text-lg">Total de Eleitores </p>
-                <p className="font-semibold text-3xl">{votingPopulation}</p>
-              </div>
-              
-              <div className="bg-pink-200 rounded-lg shadow-md pl-16 p-4 w-96">
-                <p className="text-lg">Comparecimento </p>
-                <p className="font-semibold text-3xl">{presence}</p>
-              </div>
-
-              <div className="bg-pink-200 rounded-lg shadow-md pl-16 p-4 w-96">
-                <p className="text-lg">Abstenção </p>
-                <p className="font-semibold text-3xl">{absence}</p>
-              </div>
-              
-
-              
-              
-              
-            </div>
+            <>
+              <Information>{votingPopulation}</Information>
+              <Information>{presence}</Information>
+              <Information>{absence}</Information>
+            </>
           )
         })
       }
     </div>
   )
 }
-
 
 
 // {
