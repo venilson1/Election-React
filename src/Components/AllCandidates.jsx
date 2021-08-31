@@ -1,3 +1,4 @@
+import Candidate from "./Candidate";
 import Information from "./Information"
 
 export default function AllCandidates({
@@ -14,15 +15,9 @@ export default function AllCandidates({
               <Information>{presence}</Information>
               <Information>{absence}</Information>
 
-              {/* <div key={id} className="">
-                <div style={{ backgroundColor: "#606368" }} className="m-4 p-4 rounded-lg shadow-md text-gray-100 font-medium w-96">
-                  <div className="flex flex-row">
-                  <div className="flex w-2/4 justify-center p-2">
-                    <img src={`img/${candidates}.png`} alt="" />
-                  </div>
-                  </div>
-                </div>
-              </div> */}
+              <div className="flex flex-row flex-wrap mt-16">
+                <Candidate  candidates={candidates}/>
+              </div>
 
             </>
           )

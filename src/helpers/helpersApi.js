@@ -14,8 +14,8 @@ export default function helpersApi(
 
     allCandidates.forEach((candidate) => {
       if (el.candidateId === candidate.id) {
-        el.candidateName = candidate.name;
-        el.candidateUsername = candidate.username;
+        el.name = candidate.name;
+        el.username = candidate.username;
       }
     });
 
