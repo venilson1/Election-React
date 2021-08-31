@@ -11,9 +11,9 @@ export default function AllCandidates({
         candidates.map(({ absence, candidates, id, name, presence, votingPopulation }) => {
           return (
             <>
-              <Information>{votingPopulation}</Information>
-              <Information>{presence}</Information>
-              <Information>{absence}</Information>
+              <Information label="Total de Eleitores">{votingPopulation}</Information>
+              <Information label="Compareimento" txtColor="text-green-600">{presence}</Information>
+              <Information label="Abstenção" txtColor="text-red-600">{absence}</Information>
 
               <div className="flex flex-row flex-wrap mt-16">
                 <Candidate  candidates={candidates}/>

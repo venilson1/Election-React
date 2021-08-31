@@ -18,7 +18,7 @@ export default function Candidate({
                     </div>
                     <div className="flex col-end-13 w-2/4 items-center justify-center p-2 flex-col">
                       <p className="font-extrabold text-2xl">{percent} %</p>
-                      <p>{votes} votos</p>
+                      <p>{votes.toLocaleString('PT')} votos</p>
                     </div>
                   </div>
                   <div className="flex flex-row justify-center p-2 m-4 bg-pink-100 font-extrabold text-2xl">
