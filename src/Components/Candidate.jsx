@@ -1,8 +1,10 @@
 export default function Candidate({
   candidates = []
 }) {
-  const maxVotes = candidates.map(({ votes }) => votes)
+  const maxVotes = 
+    candidates.map(({ votes }) => votes)
     .reduce((a, b) => Math.max(a, b));
+    
   return (
     <div>
       <div className="text-center my-10 ">
@@ -17,7 +19,6 @@ export default function Candidate({
               const borderElected = maxVotes === votes ? 'border-green-400' : 'border-yellow-500'
               const badgeElected = maxVotes === votes ? 'bg-green-400' : 'bg-yellow-500'
               const elected = maxVotes === votes ? 'Eleito' : 'Não Eleito'
-
 
               return (
                 <div key={id} style={{ backgroundColor: "#606368" }} className="m-8 p-4 rounded-lg shadow-md font-medium w-96 ">
