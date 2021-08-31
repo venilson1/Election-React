@@ -13,7 +13,7 @@ export default function Option({
     <div className="text-center">
       <select
         onChange={handlerCityChange}
-        className="outline-none p-2 bg-gray-100 font-semibold mt-10">
+        className="outline-none p-2 bg-gray-100 font-semibold m-10">
         {
           citiesChange.sort((a,b) => a.name.localeCompare(b.name))
           .map(({id, name}) => {
